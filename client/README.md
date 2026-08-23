@@ -1,70 +1,126 @@
-# Getting Started with Create React App
+Please find the live deployed link here: https://instantnote-app.onrender.com
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# InstantNote App
+
+A full-stack note management application built as a self-practice project with React, MongoDB, Express, and Node.js. Users can create, browse, edit, and delete notes organized by category.
+
+## Project Background
+
+This project was made to develop a genuine understanding of React, MongoDB, Express, and Node.js. It was built using the documentation available at the time, without the help of any LLMs. Some implementation details may therefore be imperfect or outdated compared with current best practices.
+
+## Features
+
+- Create notes with a category, title, content, and optional date
+- View all notes and open an individual note
+- Edit and delete existing notes
+- React Router navigation between the main views
+- REST API backed by MongoDB and Mongoose
+
+## Tech Stack
+
+- **Frontend:** React 18, React Router, Axios, Material UI
+- **Backend:** Node.js, Express, Mongoose
+- **Database:** MongoDB Atlas
+- **Development:** Create React App and Nodemon
+
+## Project Structure
+
+```text
+client/
+  src/components/   React views and shared UI components
+  src/service/      Axios API client
+server/
+  controller/       Request handlers for note CRUD operations
+  database/         MongoDB connection
+  routes/           Express routes
+  schema/           Mongoose note schema
+```
+
+## Setup
+
+### Prerequisites
+
+- Node.js and npm
+- A MongoDB Atlas connection with access from your development IP
+
+### Install dependencies
+
+Run these commands from the project root:
+
+```bash
+cd server
+npm install
+
+cd ../client
+npm install
+```
+
+### Configure the server
+
+Create `server/.env` with your MongoDB credentials:
+
+```env
+DB_USERNAME=your_mongodb_username
+DB_PASSWORD=your_mongodb_password
+PORT=8000
+```
+
+### Run the application
+
+Start the backend in one terminal:
+
+```bash
+cd server
+npm start
+```
+
+Start the frontend in another terminal:
+
+```bash
+cd client
+npm start
+```
+
+The frontend runs at [http://localhost:3000](http://localhost:3000) and calls the API at `http://localhost:8000`.
+
+## API Endpoints
+
+The Express API is served from `http://localhost:8000`:
+
+| Method   | Endpoint | Purpose          |
+| -------- | -------- | ---------------- |
+| `POST`   | `/add`   | Create a note    |
+| `GET`    | `/all`   | Return all notes |
+| `GET`    | `/:id`   | Return one note  |
+| `PUT`    | `/:id`   | Update a note    |
+| `DELETE` | `/:id`   | Delete a note    |
+
+Example request body:
+
+```json
+{
+  "category": "Work",
+  "title": "Project ideas",
+  "content": "Review the next iteration.",
+  "date": "2026-08-23"
+}
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+In `client/`:
 
-### `npm start`
+- `npm start` starts the React development server
+- `npm test` runs the Create React App test runner
+- `npm run build` creates a production build
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In `server/`:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `npm start` starts the API with Nodemon
 
-### `npm test`
+## Current Limitations
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The frontend API base URL is currently hardcoded to `http://localhost:8000`.
+- Authentication and authorization are not implemented.
+- Automated test coverage is limited, and the server does not currently define a test suite.
+- Request validation and production error handling could be strengthened.
