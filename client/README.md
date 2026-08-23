@@ -120,7 +120,10 @@ In `server/`:
 
 ## Current Limitations
 
-- The frontend API base URL is currently hardcoded to `http://localhost:8000`.
+- The frontend reads its API base URL from `REACT_APP_API_URL`. Create a
+  `client/.env` file for local overrides, or configure the variable in the
+  frontend's deployment environment. If it is omitted, it defaults to
+  `http://localhost:8000` for local development.
 - Authentication and authorization are not implemented.
 - Automated test coverage is limited, and the server does not currently define a test suite.
 - Request validation and production error handling could be strengthened.

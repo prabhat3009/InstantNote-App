@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-
-const URL = 'http://localhost:8000';
+const URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 export const addUser = async (data) => {
   try {
@@ -44,7 +43,6 @@ export const deleteUser = async (id) => {
     console.log('Error while calling deleteUser api', error);
   }
 }
-
 
 
 
